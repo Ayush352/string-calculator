@@ -32,4 +32,28 @@ describe("String Calculator", () => {
     expect(stringCalculator.add("1\n2\n3")).toBe(6);
     expect(stringCalculator.add("1\n2\n")).toBe(3);
   });
+
+  it("should handle mixed delimiters", () => {
+    expect(stringCalculator.add("1,2 3\n4")).toBe(10);
+    expect(stringCalculator.add("1\n2,3 4")).toBe(10);
+  });
+
+  it("should ignore non-numeric values", () => {
+    expect(stringCalculator.add("a")).toBe(0);
+    expect(stringCalculator.add("8,a,10")).toBe(18);
+    expect(stringCalculator.add("1,hello,2,world,3")).toBe(6);
+    expect(stringCalculator.add("abc,def")).toBe(0);
+  });
+
+  it("should throw an error for negative numbers", () => {
+    expect(() => stringCalculator.add("1,-2,3")).toThrow(
+      "Negatives not allowed: -2"
+    );
+    expect(() => stringCalculator.add("1,-2,-3")).toThrow(
+      "Negatives not allowed: -2, -3"
+    );
+    expect(() => stringCalculator.add("-1")).toThrow(
+      "Negatives not allowed: -1"
+    );
+  });
 });

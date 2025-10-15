@@ -7,8 +7,14 @@ const add = (numbers: string): number => {
   const nums = numbers
     .split(delimiter)
     .filter((n) => n != "")
-    .map((n) => parseInt(n));
-    
+    .map((n) => parseInt(n))
+    .filter((n) => !isNaN(n));
+
+  const negatives = nums.filter((n) => n < 0);
+  if (negatives.length > 0) {
+    throw new Error(`Negatives not allowed: ${negatives.join(", ")}`);
+  }
+
   return nums.reduce((sum, num) => sum + num, 0);
 };
 
