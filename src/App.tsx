@@ -1,10 +1,19 @@
 import { useState } from 'react';
+import stringCalculator from './stringCalculator';
 
 const App = () => {
   const [input, setInput] = useState('');
-  const [result] = useState(null);
+  const [result, setResult] = useState<number | null>(null);
 
-  const handleCalculate = () => {};
+  const handleCalculate = () => {
+    try{
+      const sum = stringCalculator.add(input);
+      setResult(sum);
+    }
+    catch(e){
+      console.error(e);
+    }
+  };
 
   return (
     <div style={{ padding: '20px', backgroundColor: '#fff', color: '#aaa' }}>
