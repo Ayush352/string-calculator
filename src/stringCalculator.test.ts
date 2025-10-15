@@ -56,4 +56,10 @@ describe("String Calculator", () => {
       "Negatives not allowed: -1"
     );
   });
+
+  it("should support custom delimiters", () => {
+    expect(stringCalculator.add("//;\n1;2")).toBe(3);
+    expect(stringCalculator.add("//|\n1|2|3")).toBe(6);
+    expect(stringCalculator.add("//***\n1***2***3")).toBe(6);
+  });
 });
