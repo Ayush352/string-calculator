@@ -37,7 +37,11 @@ const App = () => {
         onBlur={(e) => e.target.style.outline = 'none'}
         placeholder='Enter numbers to calculate sum'
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+          setInput(e.target.value);
+          setResult(null);
+          setError('');
+        }}
       />
       
       <button
