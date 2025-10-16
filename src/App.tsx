@@ -21,8 +21,8 @@ const App = () => {
     <div style={{ padding: '20px', backgroundColor: '#fff', color: '#333' }}>
       <img
         src='https://images.unsplash.com/photo-1594352161389-11756265d1b5?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-        width={600}
-        height={400}
+        width={400}
+        height={267}
         alt='Decorative image of a ball of tan yarn'
       />
 
@@ -32,7 +32,7 @@ const App = () => {
 
       <textarea
         aria-label='Enter numbers separated by commas, spaces, or newlines'
-        style={{ margin: '10px 0', color: '#333', display: 'block', width: '30%'}}
+        style={{ margin: '10px 0', color: '#333', display: 'block', width: '100%', maxWidth: '600px', minHeight: '80px', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '4px' }}
         onFocus={(e) => e.target.style.outline = '2px solid #008cba'}
         onBlur={(e) => e.target.style.outline = 'none'}
         placeholder='Enter numbers to calculate sum'
