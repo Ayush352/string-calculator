@@ -4,52 +4,60 @@ import stringCalculator from './stringCalculator';
 const App = () => {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<number | null>(null);
+  const [error, setError] = useState<string>('');
 
   const handleCalculate = () => {
-    try{
+    try {
+      setError('');
       const sum = stringCalculator.add(input);
       setResult(sum);
-    }
-    catch(e){
-      console.error(e);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Make sure you enter numbers correctly!');
+      setResult(null);
     }
   };
 
   return (
-    <div style={{ padding: '20px', backgroundColor: '#fff', color: '#aaa' }}>
+    <div style={{ padding: '20px', backgroundColor: '#fff', color: '#333' }}>
       <img
         src='https://images.unsplash.com/photo-1594352161389-11756265d1b5?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         width={600}
         height={400}
+        alt='Decorative image of a ball of tan yarn'
       />
 
-      <h2>String Calculator</h2>
+      <h1>String Calculator</h1>
 
-      <h1 style={{ fontSize: '20px' }}>Enter numbers</h1>
+      <h2>Enter numbers</h2>
 
       <textarea
-        style={{ margin: '10px 0', color: '#aaa' }}
-        placeholder='Enter numbers'
+        aria-label='Enter numbers separated by commas, spaces, or newlines'
+        style={{ margin: '10px 0', color: '#333', display: 'block', width: '30%'}}
+        placeholder='Enter numbers to calculate sum'
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-
-      <div
+      
+      <button
         onClick={handleCalculate}
         style={{
           padding: '10px',
           backgroundColor: '#008cba',
           color: '#fff',
           border: 'none',
+          cursor: 'pointer',
         }}>
         Calculate
-      </div>
+      </button>
+      
 
       {result !== null && <p style={{ color: 'green' }}>Result: {result}</p>}
 
-      <div role='alert'>
-        <p>Make sure you enter numbers correctly!</p>
-      </div>
+      {error && (
+        <div role='alert' style={{ color: 'red', marginTop: '10px' }}>
+          {error}
+        </div>
+)}
     </div>
   );
 };
