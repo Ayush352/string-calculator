@@ -33,6 +33,8 @@ const App = () => {
       <textarea
         aria-label='Enter numbers separated by commas, spaces, or newlines'
         style={{ margin: '10px 0', color: '#333', display: 'block', width: '30%'}}
+        onFocus={(e) => e.target.style.outline = '2px solid #008cba'}
+        onBlur={(e) => e.target.style.outline = 'none'}
         placeholder='Enter numbers to calculate sum'
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -46,7 +48,9 @@ const App = () => {
           color: '#fff',
           border: 'none',
           cursor: 'pointer',
-        }}>
+        }}
+        onFocus={(e) => e.target.style.outline = '2px solid #005a7a'}
+        onBlur={(e) => e.target.style.outline = 'none'}>
         Calculate
       </button>
       
